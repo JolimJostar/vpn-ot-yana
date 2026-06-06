@@ -7,6 +7,6 @@ export const siteConfig = {
     /** Включите true, когда основной сервер недоступен */
     enabled: true,
     message: 'Основные сервера временно недоступны. Используйте запасную ссылку:',
-    backupUrl: 'https://153.80.178.235:2096/devtest/zzimuqf4zw7i4jas',
+    backupUrl: 'https://153.80.178.235:2096/devtest/xsnllcp9bcwxkc8a',
   },
 };
