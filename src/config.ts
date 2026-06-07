@@ -6,7 +6,7 @@ export const siteConfig = {
   emergency: {
     /** Включите true, когда основной сервер недоступен */
     enabled: true,
-    message: 'Основные сервера временно недоступны. Используйте запасную ссылку:',
-    backupUrl: 'https://153.80.178.235:2096/devtest/xsnllcp9bcwxkc8a',
+    message: 'Основные сервера временно недоступны. Используйте запасную ссылку(07.06 15:50):',
+    backupUrl: 'https://153.80.178.235:2096/devtest/hu8l9mkda52txd7i',
   },
 };
