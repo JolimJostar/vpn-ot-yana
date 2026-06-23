@@ -4,6 +4,12 @@ import App from './App';
 
 jest.mock('./config', () => ({
   siteConfig: {
+    vpnApp: {
+      name: 'Happ',
+      iosUrl: 'https://apps.apple.com/app/happ',
+      androidUrl: 'https://play.google.com/store/apps/details?id=com.happproxy',
+      apkUrl: 'https://example.com/happ.apk',
+    },
     contacts: {
       telegram: 'https://t.me/m/es4085jrMzYy',
       vk: 'https://vk.com/lapochka_yan',
@@ -22,6 +28,11 @@ test('renders service title and plans', () => {
   expect(screen.getByText(/Личный ВПН/)).toBeInTheDocument();
   expect(screen.getByText(/Семейный ВПН/)).toBeInTheDocument();
   expect(screen.getByText(/Кол-во устройств не ограниченно/)).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Как скачать и подключить VPN' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'App Store' })).toHaveAttribute(
+    'href',
+    'https://apps.apple.com/app/happ'
+  );
   expect(screen.getByRole('heading', { name: 'Контакты' })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /Telegram/i })).toHaveAttribute(
     'href',

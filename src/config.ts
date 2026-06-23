@@ -1,4 +1,10 @@
 export const siteConfig = {
+  vpnApp: {
+    name: 'Happ',
+    iosUrl: 'https://apps.apple.com/us/app/happ-proxy-utility/id6504287215',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.happproxy',
+    apkUrl: 'https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk',
+  },
   contacts: {
     telegram: 'https://t.me/m/es4085jrMzYy',
     vk: 'https://vk.com/lapochka_yan',

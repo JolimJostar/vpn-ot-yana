@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { siteConfig } from './config';
 import './App.css';
 
+const publicUrl = process.env.PUBLIC_URL || '';
+const publicImage = (filename: string) => `${publicUrl}/images/${filename}`;
+
 const plans = [
   {
     title: '😼 Личный ВПН 🤩',
@@ -23,6 +26,24 @@ const plans = [
   },
 ];
 
+const instructionSteps = [
+  {
+    image: publicImage('step1.jpg'),
+    alt: 'Кнопка «+» в правом верхнем углу приложения Happ',
+    text: 'Нажмите кнопку «+» в правом верхнем углу, чтобы добавить подписку.',
+  },
+  {
+    image: publicImage('step2.jpg'),
+    alt: 'Пункт «Import from clipboard» в меню приложения Happ',
+    text: 'Скопируйте ссылку подписки, которую вы получили, и выберите «Import from clipboard» (Импорт из буфера обмена).',
+  },
+  {
+    image: publicImage('step3.jpg'),
+    alt: 'Кнопка включения и выключения VPN в приложении Happ',
+    text: 'Нажмите большую кнопку по центру экрана, чтобы включить или выключить VPN.',
+  },
+] as const;
+
 const contactItems = [
   {
     id: 'telegram',
@@ -39,7 +60,7 @@ const contactItems = [
 ] as const;
 
 function App() {
-  const { emergency } = siteConfig;
+  const { emergency, vpnApp } = siteConfig;
   const [toastVisible, setToastVisible] = useState(false);
   const toastTimeoutRef = useRef<number | null>(null);
 
@@ -131,6 +152,71 @@ function App() {
         <footer className="note">
           <p>🔥Кол-во устройств не ограниченно.🔥</p>
         </footer>
+
+        <section className="instructions" aria-labelledby="instructions-title">
+          <h2 id="instructions-title" className="instructions__title">
+            Как скачать и подключить VPN
+          </h2>
+          <p className="instructions__text">
+            Установите приложение {vpnApp.name}, добавьте подписку и включите VPN.
+          </p>
+
+          <div className="instructions__download">
+            <img
+              className="instructions__app-icon"
+              src={publicImage('app-icon.jpg')}
+              alt={`Иконка приложения ${vpnApp.name}`}
+              width={72}
+              height={72}
+            />
+            <div className="instructions__download-info">
+              <p className="instructions__app-name">Скачайте {vpnApp.name}</p>
+              <div className="instructions__download-links">
+                <a
+                  className="instructions__download-link"
+                  href={vpnApp.iosUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  App Store
+                </a>
+                <a
+                  className="instructions__download-link"
+                  href={vpnApp.androidUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Play
+                </a>
+                <a
+                  className="instructions__download-link instructions__download-link--secondary"
+                  href={vpnApp.apkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  APK для Android
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <ol className="instructions__steps">
+            {instructionSteps.map((step, index) => (
+              <li key={step.image} className="instruction-step">
+                <span className="instruction-step__number">{index + 1}</span>
+                <div className="instruction-step__content">
+                  <p className="instruction-step__text">{step.text}</p>
+                  <img
+                    className="instruction-step__image"
+                    src={step.image}
+                    alt={step.alt}
+                    loading="lazy"
+                  />
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
 
         <section className="contacts" aria-labelledby="contacts-title">
           <h2 id="contacts-title" className="contacts__title">
